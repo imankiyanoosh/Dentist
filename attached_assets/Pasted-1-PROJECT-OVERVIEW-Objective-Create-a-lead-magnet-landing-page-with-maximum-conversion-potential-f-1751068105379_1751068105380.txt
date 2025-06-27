@@ -1,0 +1,100 @@
+1. PROJECT OVERVIEW
+Objective: Create a lead magnet landing page with maximum conversion potential for CA Dental Medical CPA's specialized services.
+Success Metrics:
+
+Primary: Lead generation conversion rate >40%
+Secondary: Email capture, consultation bookings
+Tertiary: Time on page, engagement with interactive elements
+
+2. TECHNICAL ARCHITECTURE
+Structure: Single-page application with progressive disclosure
+
+Header: Minimal, trust-focused navigation
+Hero Section: Value proposition + lead magnet offer
+Interactive Element: Dental Practice Profitability Quiz/Calculator
+Social Proof: Client testimonials from dental practices
+Service Overview: Brief, benefit-focused service descriptions
+Lead Capture Form: Multi-step, low-friction design
+Footer: Trust signals and contact information
+
+Technical Stack:
+
+Vanilla HTML5 (semantic structure)
+CSS3 with custom properties and animations
+Vanilla JavaScript (no dependencies)
+Progressive enhancement approach
+Mobile-first responsive design
+
+3. CONVERSION OPTIMIZATION STRATEGY
+Lead Magnet Options (choose one):
+
+"Dental Practice Tax Savings Calculator" - Interactive tool showing potential savings
+"The 7 Hidden Tax Deductions Every Dentist Misses" - PDF guide
+"Dental Practice Financial Health Quiz" - Personalized assessment with results
+
+Recommended: Dental Practice Financial Health Quiz (highest engagement + qualification)
+4. UX/UI DESIGN SPECIFICATIONS
+Visual Hierarchy:
+
+F-pattern layout optimization
+Contrast ratio: minimum 7:1 for text
+Primary CTA color: High-contrast (likely deep blue or green)
+Typography: Professional sans-serif, 16px+ base size
+
+Animation Strategy:
+
+Micro-interactions on form elements
+Scroll-triggered animations (IntersectionObserver API)
+Progress indicators for multi-step forms
+Hover states with subtle transforms
+Loading animations for quiz results
+
+Trust Elements:
+
+Client logos/testimonials above the fold
+Professional certifications badges
+"Secure" indicators on forms
+Social proof counters
+
+5. PSYCHOLOGICAL CONVERSION TRIGGERS
+Urgency: "Limited spots for Q3 tax planning consultations"
+Scarcity: "Only accepting 50 new dental practices this quarter"
+Authority: CPA credentials, dental industry specialization
+Social Proof: "Trusted by 200+ dental practices"
+Reciprocity: High-value free assessment/tool
+Commitment: Progressive form completion (foot-in-the-door)
+6. INTERACTIVE QUIZ STRUCTURE
+Quiz Flow (5-7 questions):
+
+Practice type and size
+Current annual revenue range
+Current accounting setup
+Biggest financial challenge
+Tax planning frequency
+Growth goals
+Contact information (progressive profiling)
+
+Results: Personalized PDF report with specific recommendations and clear next steps.
+7. TECHNICAL IMPLEMENTATION DETAILS
+Performance Optimizations:
+
+Lazy loading for non-critical assets
+CSS animations using transform/opacity only
+Debounced form validation
+Local storage for quiz progress
+Compressed images with WebP fallbacks
+
+Accessibility:
+
+WCAG 2.1 AA compliance
+Keyboard navigation support
+Screen reader optimization
+Focus management for dynamic content
+
+Analytics Integration Points:
+
+Form field interaction tracking
+Quiz completion rates
+Scroll depth measurement
+CTA click heatmapping
+Time-to-conversion metrics

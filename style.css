@@ -274,6 +274,7 @@ h4 { font-size: 1.25rem; }
 .quiz-section {
     padding: 4rem 0;
     background: var(--bg-light);
+    display: none;
 }
 
 .quiz-container {
@@ -326,16 +327,27 @@ h4 { font-size: 1.25rem; }
     border-radius: var(--radius);
     cursor: pointer;
     transition: all 0.3s ease;
+    background: var(--bg-white);
 }
 
 .option:hover {
     border-color: var(--primary-color);
     background: var(--bg-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 .option.selected {
     border-color: var(--primary-color);
     background: rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.option label {
+    cursor: pointer;
+    flex: 1;
+    margin: 0;
 }
 
 .option input[type="radio"] {

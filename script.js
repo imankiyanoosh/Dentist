@@ -135,6 +135,9 @@ function startQuiz() {
     currentQuestionIndex = 0;
     quizAnswers = {};
     
+    // Show quiz section
+    quizSection.style.display = 'block';
+    
     // Scroll to quiz section
     quizSection.scrollIntoView({ behavior: 'smooth' });
     
@@ -163,7 +166,7 @@ function displayQuestion() {
     question.options.forEach((option, index) => {
         const isSelected = quizAnswers[question.id] === option.value;
         questionHTML += `
-            <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${question.id}, '${option.value}', this)">
+            <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${question.id}, '${option.value.replace(/'/g, "\\'")}', this)">
                 <input type="radio" name="question_${question.id}" value="${option.value}" ${isSelected ? 'checked' : ''}>
                 <label>${option.label}</label>
             </div>
@@ -187,8 +190,9 @@ function displayQuestion() {
 
 // Select Option
 function selectOption(questionId, value, element) {
-    // Remove selected class from all options
-    element.parentNode.querySelectorAll('.option').forEach(opt => {
+    // Remove selected class from all options in this question
+    const allOptions = element.parentNode.querySelectorAll('.option');
+    allOptions.forEach(opt => {
         opt.classList.remove('selected');
     });
     
@@ -196,13 +200,23 @@ function selectOption(questionId, value, element) {
     element.classList.add('selected');
     
     // Update radio button
-    element.querySelector('input[type="radio"]').checked = true;
+    const radioButton = element.querySelector('input[type="radio"]');
+    if (radioButton) {
+        radioButton.checked = true;
+    }
     
     // Store answer
     quizAnswers[questionId] = value;
     
     // Update next button
     updateNextButton();
+    
+    // Auto-advance after selection (optional, for better UX)
+    setTimeout(() => {
+        if (currentQuestionIndex < quizData.length - 1) {
+            nextQuestion();
+        }
+    }, 800);
 }
 
 // Update Next Button State
@@ -281,6 +295,8 @@ function generateResults() {
         case 'over2m':
             potentialSavings = 40000;
             break;
+        default:
+            potentialSavings = 12000;
     }
     
     // Add recommendations based on answers

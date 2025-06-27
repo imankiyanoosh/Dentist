@@ -1,16 +1,253 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Dental Practice Financial Health Assessment | CA Dental Medical CPA</title>
+    <meta name="description" content="Get your personalized financial health report and discover hidden tax savings for your dental practice. Trusted by 350+ healthcare professionals.">
+    <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
-</body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>CA Dental Medical CPA</h1>
+                <span class="tagline">Specialized Tax & Accounting for Healthcare</span>
+            </div>
+            <div class="trust-indicators">
+                <span class="rating">★★★★★ 5.0 (107 reviews)</span>
+                <span class="clients">350+ Happy Doctors</span>
+            </div>
+        </div>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">Discover Hidden Tax Savings in Your Dental Practice</h2>
+                    <p class="hero-subtitle">Take our FREE 2-minute Financial Health Assessment and get a personalized report showing exactly how much you could save on taxes this year.</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <span class="benefit-icon">💰</span>
+                            <span>Average $15K+ tax savings</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">⏱️</span>
+                            <span>2-minute assessment</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">📊</span>
+                            <span>Personalized report</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-button primary" onclick="startQuiz()">
+                        Start Free Assessment
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <p class="guarantee">✓ No credit card required • ✓ Instant results • ✓ 100% confidential</p>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="calculator-preview">
+                        <div class="calc-header">Dental Practice Financial Health</div>
+                        <div class="calc-body">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                            <p>Question 3 of 5</p>
+                            <div class="sample-question">What's your practice's annual revenue?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <h3>Trusted by Leading Dental Professionals</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Pedram helped us save over $20K in taxes last year. His dental industry expertise is unmatched."</p>
+                    <cite>- Dr. Scott White, DDS</cite>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"We changed CPAs earlier this year and could not be happier with the support we've received from Pedram!"</p>
+                    <cite>- Dr. Pritam Mistry, DDS</cite>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Very responsive, punctual and knowledgeable. I highly recommend their services."</p>
+                    <cite>- Dr. Kevin Khachatryan</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>Dental Practice Financial Health Assessment</h3>
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress" id="quiz-progress"></div>
+                        </div>
+                        <span class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">7</span></span>
+                    </div>
+                </div>
+
+                <div class="quiz-body" id="quiz-body">
+                    <!-- Quiz questions will be dynamically inserted here -->
+                </div>
+
+                <div class="quiz-navigation">
+                    <button class="btn secondary" id="prev-btn" onclick="previousQuestion()" style="display: none;">Previous</button>
+                    <button class="btn primary" id="next-btn" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results" style="display: none;">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-header">
+                    <h3>Your Personalized Financial Health Report</h3>
+                    <p>Based on your responses, here's what we found:</p>
+                </div>
+                
+                <div class="results-content" id="results-content">
+                    <!-- Results will be dynamically generated -->
+                </div>
+
+                <div class="cta-section">
+                    <h4>Ready to maximize your practice's financial potential?</h4>
+                    <p>Schedule a FREE 15-minute consultation to discuss your personalized recommendations.</p>
+                    <button class="cta-button primary" onclick="showContactForm()">
+                        Schedule Free Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section" id="contact-form" style="display: none;">
+        <div class="container">
+            <div class="form-container">
+                <h3>Get Your Free Consultation</h3>
+                <p>Limited spots available for Q3 tax planning - only accepting 20 new dental practices this month.</p>
+                
+                <form class="contact-form" id="consultation-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="practice-name">Practice Name</label>
+                        <input type="text" id="practice-name" name="practice-name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="best-time">Best Time to Call</label>
+                        <select id="best-time" name="best-time">
+                            <option value="">Select preferred time</option>
+                            <option value="morning">Morning (9 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                            <option value="evening">Evening (5 PM - 7 PM)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="cta-button primary">
+                        Schedule My Free Consultation
+                    </button>
+                    
+                    <p class="form-note">✓ Secure & confidential • ✓ No obligation • ✓ We'll call within 24 hours</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services">
+        <div class="container">
+            <h3>Why Choose CA Dental Medical CPA?</h3>
+            <div class="services-grid">
+                <div class="service">
+                    <div class="service-icon">💼</div>
+                    <h4>Healthcare Accounting Excellence</h4>
+                    <p>Specialized knowledge in dental and medical accounting ensures compliance and maximizes profitability.</p>
+                </div>
+                <div class="service">
+                    <div class="service-icon">⚡</div>
+                    <h4>Fast, Responsive Service</h4>
+                    <p>We respond to all client inquiries within 24 hours, ensuring your questions are answered promptly.</p>
+                </div>
+                <div class="service">
+                    <div class="service-icon">📈</div>
+                    <h4>Proactive Tax Planning</h4>
+                    <p>Year-round strategies to reduce your tax burden and increase your bottom line.</p>
+                </div>
+                <div class="service">
+                    <div class="service-icon">💎</div>
+                    <h4>Clear, Fixed Pricing</h4>
+                    <p>Predictable monthly fees with no surprise bills. You're free to reach out whenever you need assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h4>CA Dental Medical CPA</h4>
+                    <p>4695 MacArthur Ct 11th floor<br>Newport Beach, CA 92660</p>
+                    <p>Phone: (800) 277-1020<br>Email: Info@pkcpass.com</p>
+                </div>
+                <div class="footer-trust">
+                    <div class="trust-badges">
+                        <span class="badge">🔒 Secure & Confidential</span>
+                        <span class="badge">✓ CPA Certified</span>
+                        <span class="badge">⭐ 5.0 Rating</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CA Dental Medical CPA. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>

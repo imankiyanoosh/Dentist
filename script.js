@@ -1,3 +1,7 @@
+The provided code aims to fix the quiz navigation functionality by ensuring all buttons work properly, specifically addressing an issue where the "Next Question" button might not function as expected when an answer is required.
+```
+
+```javascript
 // Quiz Data - Psychological Lead Conversion System
 const quizData = [
     {
@@ -430,9 +434,32 @@ function nextQuestion() {
     const currentQuestion = quizData[currentQuestionIndex];
 
     if (!quizAnswers[currentQuestion.id]) {
-        alert('Please select an answer before continuing.');
+        // Highlight that an answer is required
+        const options = document.querySelectorAll('.option');
+        options.forEach(option => {
+            option.style.animation = 'shake 0.5s ease-in-out';
+        });
+
+        // Show a more user-friendly message
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'Please select an answer to continue';
+        errorMsg.style.cssText = 'color: #ef4444; text-align: center; margin-top: 1rem; font-weight: 600;';
+
+        const existingError = document.querySelector('.error-message');
+        if (existingError) existingError.remove();
+
+        document.getElementById('quiz-body').appendChild(errorMsg);
+
+        setTimeout(() => {
+            if (errorMsg.parentNode) errorMsg.remove();
+        }, 3000);
         return;
     }
+
+    // Remove any existing error messages
+    const existingError = document.querySelector('.error-message');
+    if (existingError) existingError.remove();
 
     if (currentQuestionIndex < quizData.length - 1) {
         currentQuestionIndex++;
@@ -866,12 +893,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (phoneInput) {
-        phoneInput.addEventListener('blur', function() {
-            if (this.value && !validatePhone(this.value)) {
-                this.style.borderColor = '#ef4444';
-            } else {
-                this.style.borderColor = '';
-            }
-        });
-    }
-});

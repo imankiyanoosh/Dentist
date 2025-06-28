@@ -205,8 +205,36 @@ function loadTheme() {
     }
 }
 
+// Global theme toggle functionality
+function toggleGlobalTheme() {
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    const currentTheme = body.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+        body.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('globalTheme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('globalTheme', 'dark');
+    }
+}
+
+// Load saved global theme
+function loadGlobalTheme() {
+    const savedTheme = localStorage.getItem('globalTheme') || 'light';
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    
+    body.setAttribute('data-theme', savedTheme);
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+}
+
 // Initialize theme on page load
 document.addEventListener('DOMContentLoaded', function() {
+    loadGlobalTheme();
     loadTheme();
 });
 

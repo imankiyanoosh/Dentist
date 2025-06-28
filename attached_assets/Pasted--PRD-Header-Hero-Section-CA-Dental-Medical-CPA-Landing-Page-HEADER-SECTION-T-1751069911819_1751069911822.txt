@@ -1,0 +1,212 @@
+# PRD - Header & Hero Section
+## CA Dental Medical CPA Landing Page
+
+---
+
+## HEADER SECTION - TECHNICAL SPECIFICATIONS
+
+### **Structure & Layout**
+```
+Header Container (Fixed/Sticky)
+├── Logo Section (Left)
+├── Navigation Menu (Center) 
+├── CTA Button (Right)
+└── Mobile Menu Toggle
+```
+
+### **Design Requirements**
+
+**Layout Type**: Floating header with glassmorphism effect
+- **Height**: 80px desktop / 70px mobile
+- **Background**: `rgba(255, 255, 255, 0.95)` with backdrop-filter blur
+- **Border**: 1px bottom border with subtle gradient
+- **Shadow**: Dynamic shadow that appears on scroll
+
+**Logo Specifications**:
+- **Size**: 180px width max (auto height)
+- **Format**: SVG preferred for crisp scaling
+- **Hover**: Subtle scale transform (1.02)
+
+**Navigation Menu**:
+- **Items**: Services, About, Resources, Contact
+- **Typography**: 16px, 500 weight, letter-spacing: 0.5px
+- **Hover State**: Underline animation with color transition
+- **Active State**: Different color + underline
+
+**Primary CTA Button**:
+- **Text**: "Free Practice Assessment"
+- **Style**: Rounded corners (8px), gradient background
+- **Size**: 14px padding, 16px font-size
+- **Animation**: Hover lift effect + shadow increase
+- **Color**: Gradient blue to teal
+
+### **Interactive Behaviors**
+
+**Scroll Effects**:
+- Header shrinks to 60px on scroll
+- Background opacity increases
+- Shadow intensity grows
+- Logo scales down proportionally
+
+**Mobile Responsive**:
+- Hamburger menu with slide-in animation
+- Full-screen overlay navigation
+- Touch-friendly tap targets (44px minimum)
+
+---
+
+## HERO SECTION - TECHNICAL SPECIFICATIONS
+
+### **Layout Architecture**
+```
+Hero Container (100vh)
+├── Background Layer (Video/Animation)
+├── Content Grid (2 columns desktop)
+│   ├── Left Column (60%)
+│   │   ├── Headline
+│   │   ├── Subheadline  
+│   │   ├── Value Points
+│   │   └── CTA Buttons
+│   └── Right Column (40%)
+│       └── Lead Magnet Form/Visual
+└── Scroll Indicator
+```
+
+### **Visual Design System**
+
+**Background Treatment**:
+- **Option A**: Subtle animated geometric patterns
+- **Option B**: Professional dental office imagery with overlay
+- **Option C**: Clean gradient with floating elements
+- **Overlay**: `linear-gradient(135deg, rgba(30,58,138,0.05) 0%, rgba(59,130,246,0.05) 100%)`
+
+**Typography Hierarchy**:
+
+**Main Headline**:
+- **Font**: Inter/Poppins Bold, 4.5rem desktop / 2.8rem mobile
+- **Color**: `#1e3a8a` (deep blue)
+- **Line Height**: 1.1
+- **Animation**: Typewriter effect or fade-up on load
+
+**Subheadline**:
+- **Font**: Inter Medium, 1.5rem desktop / 1.2rem mobile  
+- **Color**: `#64748b` (slate)
+- **Max Width**: 600px
+- **Animation**: Fade-up with 200ms delay
+
+**Value Points**:
+- **Format**: 3 key benefits with icons
+- **Layout**: Horizontal flex on desktop, vertical on mobile
+- **Icons**: Custom dental/finance themed SVGs
+- **Animation**: Stagger animation (100ms intervals)
+
+### **Interactive Elements**
+
+**Primary CTA Button**:
+- **Text**: "Get My Free Dental CPA Analysis"
+- **Style**: Large button (56px height)
+- **Background**: Animated gradient
+- **Hover**: Pulse effect + shadow expansion
+- **Click**: Smooth scroll to form section
+
+**Secondary CTA**:
+- **Text**: "Schedule 15-Min Call"
+- **Style**: Ghost button with border
+- **Hover**: Fill animation from center
+- **Icon**: Phone or calendar icon
+
+**Lead Magnet Visual**:
+- **Type**: Interactive preview of calculator/quiz
+- **Animation**: Floating cards with parallax
+- **Hover States**: Individual card interactions
+- **Purpose**: Show value before form completion
+
+### **Animation Specifications**
+
+**Page Load Sequence** (Total: 1.2 seconds):
+```
+0ms:     Hero background fade-in
+200ms:   Headline typewriter/fade-up
+400ms:   Subheadline fade-up  
+600ms:   Value points stagger in
+800ms:   CTA buttons slide-up
+1000ms:  Lead magnet visual fade-in
+1200ms:  Scroll indicator pulse begins
+```
+
+**Scroll Interactions**:
+- **Parallax**: Background moves at 0.5x scroll speed
+- **Element Reveals**: Intersection Observer triggered animations
+- **Progress Indicator**: Shows completion percentage
+
+**Micro-Interactions**:
+- **Button Hovers**: Transform scale + shadow
+- **Icon Animations**: Subtle rotations/pulses
+- **Form Focus**: Input field expansion
+- **Loading States**: Skeleton screens
+
+### **Responsive Behavior**
+
+**Breakpoints**:
+- **Mobile**: 320px - 768px (Stack layout)
+- **Tablet**: 768px - 1024px (Adjusted spacing)
+- **Desktop**: 1024px+ (Full 2-column layout)
+
+**Mobile Optimizations**:
+- Headline size reduction with maintained hierarchy
+- Single column layout with optimized spacing
+- Touch-optimized button sizes (minimum 44px)
+- Reduced animation complexity for performance
+
+### **Content Strategy**
+
+**Headline Options** (A/B Test):
+1. "Stop Losing $50K+ Annually to Dental Tax Mistakes"
+2. "The Only CPA Firm Built Exclusively for Dentists"
+3. "Turn Your Dental Practice Into a Tax-Efficient Profit Machine"
+
+**Value Points**:
+1. 🦷 "Dental-Specific Tax Strategies"
+2. 💰 "Average 30% Tax Savings"
+3. 📊 "Practice Growth Optimization"
+
+**Trust Indicators**:
+- "Trusted by 200+ Dental Practices"
+- "CPA + Dental Industry Certified"
+- "Average Client Saves $47K Annually"
+
+### **Technical Implementation Notes**
+
+**Performance Targets**:
+- First Contentful Paint: <1.5s
+- Largest Contentful Paint: <2.5s
+- Cumulative Layout Shift: <0.1
+
+**CSS Architecture**:
+- CSS Custom Properties for theme consistency
+- CSS Grid for layout flexibility  
+- Transform3d for hardware acceleration
+- Intersection Observer for scroll animations
+
+**JavaScript Functionality**:
+- Lazy loading for non-critical elements
+- Debounced scroll handlers
+- Form validation with real-time feedback
+- Analytics event tracking
+
+### **Conversion Optimization**
+
+**Visual Hierarchy Priority**:
+1. Main headline (highest contrast)
+2. Primary CTA button (vibrant color)
+3. Lead magnet preview (visual interest)
+4. Value propositions (supporting evidence)
+5. Secondary elements (trust signals)
+
+**Attention Direction**:
+- Diagonal composition leading to CTA
+- Contrasting colors for important elements
+- White space to reduce cognitive load
+- Progressive disclosure of information
+
+In chandoshanbe code implementation mikonim?

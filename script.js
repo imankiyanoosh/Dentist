@@ -1,84 +1,94 @@
 
-// Quiz Data
+// Quiz Data - Psychological Lead Conversion System
 const quizData = [
     {
         id: 1,
-        question: "What type of dental practice do you operate?",
+        question: "What best describes your dental practice?",
         type: "radio",
         options: [
-            { value: "general", label: "General Dentistry" },
-            { value: "specialist", label: "Specialist (Orthodontist, Periodontist, etc.)" },
-            { value: "multi", label: "Multi-specialty Practice" },
-            { value: "group", label: "Group Practice/DSO" }
+            { value: "general", label: "🦷 General Dentistry (Solo or small group)", icon: "🦷" },
+            { value: "specialty", label: "🔧 Specialty Practice (Ortho, Oral Surgery, Perio, Endo)", icon: "🔧" },
+            { value: "multi-location", label: "🏢 Multi-Location Practice (2+ offices)", icon: "🏢" },
+            { value: "dso", label: "👥 DSO/Group Practice (Corporate structure)", icon: "👥" },
+            { value: "new-practice", label: "🆕 New Practice (Less than 2 years)", icon: "🆕" }
         ]
     },
     {
         id: 2,
-        question: "What's your practice's approximate annual revenue?",
+        question: "What's your practice's annual gross revenue?",
         type: "radio",
+        dynamic: true,
         options: [
-            { value: "under500k", label: "Under $500K" },
-            { value: "500k-1m", label: "$500K - $1M" },
-            { value: "1m-2m", label: "$1M - $2M" },
-            { value: "over2m", label: "Over $2M" }
+            { value: "300k-600k", label: "💰 $300K - $600K", icon: "💰" },
+            { value: "600k-1.2m", label: "💰 $600K - $1.2M", icon: "💰" },
+            { value: "1.2m-2.5m", label: "💰 $1.2M - $2.5M", icon: "💰" },
+            { value: "2.5m-5m", label: "💰 $2.5M - $5M", icon: "💰" },
+            { value: "5m-plus", label: "💰 $5M+", icon: "💰" }
         ]
     },
     {
         id: 3,
-        question: "How do you currently handle your accounting?",
+        question: "How is your practice currently structured for taxes?",
         type: "radio",
         options: [
-            { value: "self", label: "I do it myself" },
-            { value: "bookkeeper", label: "Local bookkeeper" },
-            { value: "general-cpa", label: "General CPA (not dental-focused)" },
-            { value: "dental-cpa", label: "Dental-specialized CPA" },
-            { value: "none", label: "No formal accounting system" }
+            { value: "sole-prop", label: "📄 Sole Proprietorship (Schedule C)", icon: "📄" },
+            { value: "single-llc", label: "🏢 Single-Member LLC (Disregarded entity)", icon: "🏢" },
+            { value: "partnership", label: "🤝 Partnership/Multi-Member LLC", icon: "🤝" },
+            { value: "s-corp", label: "🏛️ S-Corporation", icon: "🏛️" },
+            { value: "c-corp", label: "🏦 C-Corporation", icon: "🏦" },
+            { value: "not-sure", label: "❓ Not Sure/Need Guidance", icon: "❓" }
         ]
     },
     {
         id: 4,
-        question: "What's your biggest financial challenge right now?",
+        question: "What's your biggest frustration with your current tax situation?",
         type: "radio",
+        dynamic: true,
         options: [
-            { value: "taxes", label: "High tax burden" },
-            { value: "cashflow", label: "Cash flow management" },
-            { value: "compliance", label: "Staying compliant with regulations" },
-            { value: "planning", label: "Financial planning and budgeting" },
-            { value: "growth", label: "Funding practice growth" }
+            { value: "paying-too-much", label: "😤 Paying too much in taxes", icon: "😤" },
+            { value: "no-clarity", label: "📊 Lack of financial clarity", icon: "📊" },
+            { value: "compliance-concerns", label: "⚖️ Compliance concerns", icon: "⚖️" },
+            { value: "cant-plan-growth", label: "📈 Can't plan for growth effectively", icon: "📈" },
+            { value: "no-retirement-planning", label: "💼 No proper retirement planning", icon: "💼" },
+            { value: "inefficient-operations", label: "🔄 Inefficient financial operations", icon: "🔄" }
         ]
     },
     {
         id: 5,
-        question: "How often do you review your financial statements?",
+        question: "Who currently handles your practice's finances?",
         type: "radio",
         options: [
-            { value: "monthly", label: "Monthly" },
-            { value: "quarterly", label: "Quarterly" },
-            { value: "annually", label: "Annually" },
-            { value: "rarely", label: "Rarely or never" }
+            { value: "general-cpa", label: "👤 General CPA (No dental specialization)", icon: "👤" },
+            { value: "large-firm", label: "🏢 Large Accounting Firm (Impersonal service)", icon: "🏢" },
+            { value: "diy-software", label: "💻 DIY/Software Only (High risk)", icon: "💻" },
+            { value: "bookkeeper-only", label: "👥 Bookkeeper Only (Limited scope)", icon: "👥" },
+            { value: "dental-cpa", label: "🦷 Dental-Specialized CPA (Competitor)", icon: "🦷" },
+            { value: "no-help", label: "❌ No Professional Help (Urgent need)", icon: "❌" }
         ]
     },
     {
         id: 6,
-        question: "Do you have a proactive tax planning strategy?",
+        question: "What's your 3-year goal for your practice?",
         type: "radio",
         options: [
-            { value: "yes-comprehensive", label: "Yes, comprehensive year-round planning" },
-            { value: "yes-basic", label: "Yes, basic annual planning" },
-            { value: "sometimes", label: "Sometimes, when I remember" },
-            { value: "no", label: "No, I just file taxes annually" }
+            { value: "scale-multiple", label: "🚀 Scale to multiple locations", icon: "🚀" },
+            { value: "maximize-income", label: "💰 Maximize personal income", icon: "💰" },
+            { value: "early-retirement", label: "🏝️ Build wealth for early retirement", icon: "🏝️" },
+            { value: "family-legacy", label: "👨‍👩‍👧‍👦 Create family legacy", icon: "👨‍👩‍👧‍👦" },
+            { value: "sell-premium", label: "💼 Sell practice at premium", icon: "💼" },
+            { value: "optimize-current", label: "🎯 Optimize current operations", icon: "🎯" }
         ]
     },
     {
         id: 7,
-        question: "What are your main growth goals for the next 2 years?",
+        question: "When do you want to start optimizing your practice finances?",
         type: "radio",
+        urgency: true,
         options: [
-            { value: "increase-revenue", label: "Increase revenue by 20%+" },
-            { value: "expand-location", label: "Open additional location" },
-            { value: "add-services", label: "Add new services/specialists" },
-            { value: "improve-margins", label: "Improve profit margins" },
-            { value: "exit-planning", label: "Plan for practice sale/retirement" }
+            { value: "immediately", label: "🔥 Immediately (I'm losing money every day)", icon: "🔥", priority: "hot" },
+            { value: "30-days", label: "📅 Within 30 days (Ready to make changes)", icon: "📅", priority: "warm" },
+            { value: "next-quarter", label: "🗓️ Next quarter (Planning ahead)", icon: "🗓️", priority: "future" },
+            { value: "exploring", label: "💭 Just exploring options (Learning phase)", icon: "💭", priority: "nurture" }
         ]
     }
 ];
@@ -183,24 +193,51 @@ function startQuiz() {
 function displayQuestion() {
     const question = quizData[currentQuestionIndex];
     
-    // Update progress
+    // Update progress with animation
     const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
     progressBar.style.width = `${progress}%`;
     currentQuestionSpan.textContent = currentQuestionIndex + 1;
     
-    // Create question HTML
+    // Add pulse animation to progress bar
+    progressBar.style.animation = 'progressPulse 0.5s ease-out';
+    setTimeout(() => {
+        progressBar.style.animation = '';
+    }, 500);
+    
+    // Dynamic question text based on previous answers
+    let dynamicQuestion = question.question;
+    if (question.dynamic) {
+        dynamicQuestion = getDynamicQuestionText(question, currentQuestionIndex);
+    }
+    
+    // Create question HTML with enhanced styling
     let questionHTML = `
-        <div class="question">
-            <h4>${question.question}</h4>
+        <div class="question fade-in">
+            <div class="question-header">
+                <h4>${dynamicQuestion}</h4>
+                ${question.urgency ? '<div class="urgency-indicator">⚡ This affects your immediate savings potential</div>' : ''}
+            </div>
             <div class="question-options">
     `;
     
     question.options.forEach((option, index) => {
         const isSelected = quizAnswers[question.id] === option.value;
+        const priorityClass = option.priority ? `priority-${option.priority}` : '';
+        const delay = index * 0.1;
+        
         questionHTML += `
-            <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${question.id}, '${option.value.replace(/'/g, "\\'")}', this)">
-                <input type="radio" name="question_${question.id}" value="${option.value}" ${isSelected ? 'checked' : ''}>
-                <label>${option.label}</label>
+            <div class="option ${isSelected ? 'selected' : ''} ${priorityClass}" 
+                 onclick="selectOption(${question.id}, '${option.value.replace(/'/g, "\\'")}', this)"
+                 style="animation-delay: ${delay}s">
+                <div class="option-content">
+                    <div class="option-icon">${option.icon || ''}</div>
+                    <div class="option-text">
+                        <input type="radio" name="question_${question.id}" value="${option.value}" ${isSelected ? 'checked' : ''}>
+                        <label>${option.label}</label>
+                    </div>
+                    <div class="option-arrow">→</div>
+                </div>
+                <div class="option-glow"></div>
             </div>
         `;
     });
@@ -210,26 +247,77 @@ function displayQuestion() {
         </div>
     `;
     
-    quizBody.innerHTML = questionHTML;
+    // Fade out old content, then fade in new content
+    quizBody.style.opacity = '0';
+    quizBody.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        quizBody.innerHTML = questionHTML;
+        quizBody.style.opacity = '1';
+        quizBody.style.transform = 'translateY(0)';
+        
+        // Trigger option animations
+        const options = quizBody.querySelectorAll('.option');
+        options.forEach((option, index) => {
+            setTimeout(() => {
+                option.classList.add('option-appear');
+            }, index * 100);
+        });
+    }, 300);
     
     // Update navigation buttons
     prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-flex' : 'none';
-    nextBtn.textContent = currentQuestionIndex === quizData.length - 1 ? 'Get My Results' : 'Next Question';
+    nextBtn.textContent = currentQuestionIndex === quizData.length - 1 ? 'Get My Results 🎯' : 'Next Question →';
     
     // Update next button state
     updateNextButton();
 }
 
-// Select Option
+// Get dynamic question text based on previous answers
+function getDynamicQuestionText(question, questionIndex) {
+    const practiceType = quizAnswers[1];
+    const revenue = quizAnswers[2];
+    const structure = quizAnswers[3];
+    
+    switch(questionIndex) {
+        case 1: // Revenue question
+            switch(practiceType) {
+                case 'specialty':
+                    return "What's your specialty practice generating annually?";
+                case 'multi-location':
+                    return "Combined revenue across all locations?";
+                case 'dso':
+                    return "What's your organization's total annual revenue?";
+                case 'new-practice':
+                    return "What's your projected first-year revenue?";
+                default:
+                    return "What's your practice's annual gross revenue?";
+            }
+        case 3: // Pain point question
+            if (revenue && (revenue.includes('2.5m') || revenue.includes('5m')) && (structure === 'sole-prop' || structure === 'single-llc')) {
+                return "🚨 URGENT: Your current structure may be costing you $40K+ annually. What's your biggest frustration?";
+            }
+            return question.question;
+        default:
+            return question.question;
+    }
+}
+
+// Select Option with enhanced animations
 function selectOption(questionId, value, element) {
     // Remove selected class from all options in this question
     const allOptions = element.parentNode.querySelectorAll('.option');
     allOptions.forEach(opt => {
         opt.classList.remove('selected');
+        opt.classList.remove('option-selected-animate');
     });
     
-    // Add selected class to clicked option
+    // Add selected class to clicked option with animation
     element.classList.add('selected');
+    element.classList.add('option-selected-animate');
+    
+    // Add ripple effect
+    createRippleEffect(element);
     
     // Update radio button
     const radioButton = element.querySelector('input[type="radio"]');
@@ -240,15 +328,45 @@ function selectOption(questionId, value, element) {
     // Store answer
     quizAnswers[questionId] = value;
     
-    // Update next button
+    // Update next button with animation
     updateNextButton();
     
-    // Auto-advance after selection (optional, for better UX)
+    // Add selection feedback
+    const selectedIcon = element.querySelector('.option-icon');
+    if (selectedIcon) {
+        selectedIcon.style.animation = 'iconPulse 0.6s ease-out';
+        setTimeout(() => {
+            selectedIcon.style.animation = '';
+        }, 600);
+    }
+    
+    // Auto-advance after selection with improved timing
     setTimeout(() => {
         if (currentQuestionIndex < quizData.length - 1) {
             nextQuestion();
         }
-    }, 800);
+    }, 1200);
+}
+
+// Create ripple effect for option selection
+function createRippleEffect(element) {
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple-effect';
+    
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+    ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+    
+    element.appendChild(ripple);
+    
+    setTimeout(() => {
+        if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+        }
+    }, 600);
 }
 
 // Update Next Button State
@@ -303,98 +421,242 @@ function showResults() {
     resultsSection.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Generate Results
+// Generate Results with Advanced Personalization
 function generateResults() {
+    const practiceType = quizAnswers[1];
     const revenue = quizAnswers[2];
-    const accounting = quizAnswers[3];
+    const structure = quizAnswers[3];
     const challenge = quizAnswers[4];
-    const taxPlanning = quizAnswers[6];
+    const currentAdvisor = quizAnswers[5];
+    const goals = quizAnswers[6];
+    const urgency = quizAnswers[7];
     
     let potentialSavings = 5000;
+    let assessmentScore = 60;
     let recommendations = [];
+    let urgencyLevel = 'medium';
     
-    // Calculate potential savings based on revenue
-    switch(revenue) {
-        case 'under500k':
-            potentialSavings = 8000;
-            break;
-        case '500k-1m':
-            potentialSavings = 15000;
-            break;
-        case '1m-2m':
-            potentialSavings = 25000;
-            break;
-        case 'over2m':
-            potentialSavings = 40000;
-            break;
-        default:
-            potentialSavings = 12000;
-    }
+    // Calculate potential savings based on revenue and structure inefficiency
+    const revenueMultiplier = getRevenueMultiplier(revenue);
+    const structureMultiplier = getStructureInefficiencyMultiplier(structure, revenue);
     
-    // Add recommendations based on answers
-    if (accounting === 'self' || accounting === 'none') {
-        recommendations.push({
-            icon: '📊',
-            title: 'Professional Accounting Setup',
-            description: 'Implementing proper accounting systems could save you 10+ hours per month and ensure compliance.'
-        });
-    }
+    potentialSavings = Math.round(revenueMultiplier * structureMultiplier);
     
-    if (taxPlanning === 'no' || taxPlanning === 'sometimes') {
-        recommendations.push({
-            icon: '💰',
-            title: 'Proactive Tax Strategy',
-            description: 'Year-round tax planning could reduce your tax burden by 15-30% compared to reactive filing.'
-        });
-    }
+    // Calculate assessment score
+    assessmentScore = calculateAssessmentScore();
     
-    if (challenge === 'cashflow') {
-        recommendations.push({
-            icon: '📈',
-            title: 'Cash Flow Optimization',
-            description: 'Better cash flow management can improve your working capital by 20-40%.'
-        });
-    } else if (challenge === 'compliance') {
-        recommendations.push({
-            icon: '✅',
-            title: 'Compliance Assurance',
-            description: 'Specialized healthcare accounting ensures you stay compliant with all regulations.'
-        });
-    }
+    // Determine urgency level
+    urgencyLevel = determineUrgencyLevel();
     
-    // Add growth-based recommendation
-    const growth = quizAnswers[7];
-    if (growth === 'increase-revenue' || growth === 'expand-location') {
-        recommendations.push({
-            icon: '🚀',
-            title: 'Growth Financial Planning',
-            description: 'Strategic financial planning can help you achieve your growth goals 2x faster.'
-        });
-    }
+    // Generate personalized recommendations
+    recommendations = generatePersonalizedRecommendations();
     
     let resultsHTML = `
-        <div class="result-item">
-            <div class="result-icon">💡</div>
-            <div class="result-text">
-                <h4>Estimated Annual Tax Savings</h4>
-                <p>Based on your practice profile, you could potentially save <strong>$${potentialSavings.toLocaleString()}+</strong> annually through proper tax planning and accounting optimization.</p>
+        <div class="results-header-enhanced">
+            <div class="assessment-score-container">
+                <div class="score-circle ${getScoreClass(assessmentScore)}">
+                    <div class="score-value">${assessmentScore}</div>
+                    <div class="score-label">Financial Health Score</div>
+                </div>
+                <div class="score-description">
+                    ${getScoreDescription(assessmentScore)}
+                </div>
+            </div>
+        </div>
+        
+        <div class="savings-highlight ${urgencyLevel}">
+            <div class="savings-icon">💰</div>
+            <div class="savings-content">
+                <h3>Estimated Annual Tax Savings</h3>
+                <div class="savings-amount">$${potentialSavings.toLocaleString()}+</div>
+                <p>${getSavingsDescription(potentialSavings, structure, revenue)}</p>
             </div>
         </div>
     `;
     
-    recommendations.forEach(rec => {
+    recommendations.forEach((rec, index) => {
         resultsHTML += `
-            <div class="result-item">
-                <div class="result-icon">${rec.icon}</div>
-                <div class="result-text">
+            <div class="result-item enhanced" style="animation-delay: ${index * 0.2}s">
+                <div class="result-icon ${rec.priority || ''}">${rec.icon}</div>
+                <div class="result-content">
                     <h4>${rec.title}</h4>
                     <p>${rec.description}</p>
+                    ${rec.savings ? `<div class="additional-savings">Potential Additional Savings: $${rec.savings.toLocaleString()}</div>` : ''}
                 </div>
+                <div class="result-priority">${rec.timeframe || ''}</div>
             </div>
         `;
     });
     
     return resultsHTML;
+}
+
+// Calculate revenue-based multiplier
+function getRevenueMultiplier(revenue) {
+    switch(revenue) {
+        case '300k-600k': return 8000;
+        case '600k-1.2m': return 15000;
+        case '1.2m-2.5m': return 28000;
+        case '2.5m-5m': return 45000;
+        case '5m-plus': return 75000;
+        default: return 12000;
+    }
+}
+
+// Calculate structure inefficiency multiplier
+function getStructureInefficiencyMultiplier(structure, revenue) {
+    const highRevenue = revenue && (revenue.includes('2.5m') || revenue.includes('5m'));
+    
+    switch(structure) {
+        case 'sole-prop':
+            return highRevenue ? 1.8 : 1.4; // Very inefficient for high revenue
+        case 'single-llc':
+            return highRevenue ? 1.6 : 1.2;
+        case 'partnership':
+            return 1.1;
+        case 's-corp':
+            return 1.0; // Baseline efficient
+        case 'c-corp':
+            return 1.1;
+        case 'not-sure':
+            return 1.5; // Assuming inefficient structure
+        default:
+            return 1.2;
+    }
+}
+
+// Calculate overall assessment score
+function calculateAssessmentScore() {
+    let score = 50; // Base score
+    
+    // Structure efficiency
+    const structure = quizAnswers[3];
+    if (structure === 's-corp') score += 20;
+    else if (structure === 'c-corp' || structure === 'partnership') score += 10;
+    else if (structure === 'not-sure') score -= 20;
+    else score -= 10;
+    
+    // Current advisor quality
+    const advisor = quizAnswers[5];
+    if (advisor === 'dental-cpa') score += 25;
+    else if (advisor === 'general-cpa') score += 10;
+    else if (advisor === 'no-help') score -= 30;
+    else score -= 15;
+    
+    // Financial management
+    const challenge = quizAnswers[4];
+    if (challenge === 'paying-too-much') score -= 15;
+    if (challenge === 'no-clarity') score -= 20;
+    if (challenge === 'compliance-concerns') score -= 10;
+    
+    return Math.max(10, Math.min(100, score));
+}
+
+// Determine urgency level
+function determineUrgencyLevel() {
+    const urgency = quizAnswers[7];
+    const structure = quizAnswers[3];
+    const revenue = quizAnswers[2];
+    
+    if (urgency === 'immediately') return 'urgent';
+    if ((structure === 'sole-prop' || structure === 'not-sure') && 
+        (revenue && (revenue.includes('2.5m') || revenue.includes('5m')))) return 'urgent';
+    if (urgency === '30-days') return 'high';
+    return 'medium';
+}
+
+// Generate personalized recommendations
+function generatePersonalizedRecommendations() {
+    const recommendations = [];
+    const structure = quizAnswers[3];
+    const revenue = quizAnswers[2];
+    const advisor = quizAnswers[5];
+    const challenge = quizAnswers[4];
+    const goals = quizAnswers[6];
+    
+    // Structure optimization
+    if (structure === 'sole-prop' || structure === 'single-llc') {
+        recommendations.push({
+            icon: '🏛️',
+            title: 'S-Corporation Election',
+            description: 'Converting to S-Corp status could save you thousands in self-employment taxes annually.',
+            priority: 'urgent',
+            timeframe: 'Immediate',
+            savings: 15000
+        });
+    }
+    
+    // Tax planning
+    if (challenge === 'paying-too-much') {
+        recommendations.push({
+            icon: '📊',
+            title: 'Advanced Tax Strategy Implementation',
+            description: 'Dental-specific deductions and strategic planning could reduce your tax burden by 25-40%.',
+            priority: 'high',
+            timeframe: '30 days',
+            savings: 25000
+        });
+    }
+    
+    // Professional guidance
+    if (advisor === 'no-help' || advisor === 'diy-software') {
+        recommendations.push({
+            icon: '🦷',
+            title: 'Dental-Specialized CPA Partnership',
+            description: 'Working with a dental industry expert ensures you capture every available deduction and stay compliant.',
+            priority: 'urgent',
+            timeframe: 'Immediate'
+        });
+    }
+    
+    // Growth planning
+    if (goals === 'scale-multiple' || goals === 'maximize-income') {
+        recommendations.push({
+            icon: '🚀',
+            title: 'Growth-Focused Financial Strategy',
+            description: 'Strategic entity structuring and cash flow optimization to fuel your expansion plans.',
+            priority: 'medium',
+            timeframe: '60 days'
+        });
+    }
+    
+    // Retirement planning
+    if (goals === 'early-retirement' || goals === 'family-legacy') {
+        recommendations.push({
+            icon: '🏝️',
+            title: 'Wealth Building & Retirement Strategy',
+            description: 'Advanced retirement planning and wealth preservation strategies for dental professionals.',
+            priority: 'high',
+            timeframe: '90 days'
+        });
+    }
+    
+    return recommendations.slice(0, 4); // Limit to top 4 recommendations
+}
+
+// Helper functions for score and savings descriptions
+function getScoreClass(score) {
+    if (score >= 80) return 'excellent';
+    if (score >= 60) return 'good';
+    if (score >= 40) return 'needs-improvement';
+    return 'critical';
+}
+
+function getScoreDescription(score) {
+    if (score >= 80) return 'Excellent financial health with optimized structures in place.';
+    if (score >= 60) return 'Good foundation with room for significant optimization.';
+    if (score >= 40) return 'Several areas need attention to maximize your practice potential.';
+    return 'Critical issues detected - immediate professional guidance recommended.';
+}
+
+function getSavingsDescription(savings, structure, revenue) {
+    if (savings > 40000) {
+        return 'Your current structure is costing you significantly. Immediate optimization could transform your practice finances.';
+    } else if (savings > 20000) {
+        return 'Substantial savings opportunities identified through proper tax planning and structure optimization.';
+    } else {
+        return 'Good optimization potential through strategic planning and dental-specific deductions.';
+    }
 }
 
 // Show Contact Form

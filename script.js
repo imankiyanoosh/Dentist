@@ -205,36 +205,8 @@ function loadTheme() {
     }
 }
 
-// Global theme toggle functionality
-function toggleGlobalTheme() {
-    const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-    const currentTheme = body.getAttribute('data-theme');
-    
-    if (currentTheme === 'dark') {
-        body.setAttribute('data-theme', 'light');
-        themeIcon.textContent = '🌙';
-        localStorage.setItem('globalTheme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        themeIcon.textContent = '☀️';
-        localStorage.setItem('globalTheme', 'dark');
-    }
-}
-
-// Load saved global theme
-function loadGlobalTheme() {
-    const savedTheme = localStorage.getItem('globalTheme') || 'light';
-    const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-    
-    body.setAttribute('data-theme', savedTheme);
-    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-}
-
 // Initialize theme on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadGlobalTheme();
     loadTheme();
 });
 
@@ -458,26 +430,7 @@ function nextQuestion() {
     const currentQuestion = quizData[currentQuestionIndex];
 
     if (!quizAnswers[currentQuestion.id]) {
-        // Highlight that an answer is required
-        const options = document.querySelectorAll('.option');
-        options.forEach(option => {
-            option.style.animation = 'shake 0.5s ease-in-out';
-        });
-        
-        // Show a more user-friendly message
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'error-message';
-        errorMsg.textContent = 'Please select an answer to continue';
-        errorMsg.style.cssText = 'color: #ef4444; text-align: center; margin-top: 1rem; font-weight: 600;';
-        
-        const existingError = document.querySelector('.error-message');
-        if (existingError) existingError.remove();
-        
-        document.getElementById('quiz-body').appendChild(errorMsg);
-        
-        setTimeout(() => {
-            if (errorMsg.parentNode) errorMsg.remove();
-        }, 3000);
+        alert('Please select an answer before continuing.');
         return;
     }
 
@@ -803,27 +756,16 @@ document.addEventListener('click', function(e) {
 function openModal(modalType) {
     const modal = document.getElementById(modalType + '-modal');
     if (modal) {
-        modal.style.display = 'flex';
-        modal.style.alignItems = 'center';
-        modal.style.justifyContent = 'center';
+        modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-        
-        // Add fade-in animation
-        modal.style.opacity = '0';
-        setTimeout(() => {
-            modal.style.opacity = '1';
-        }, 10);
     }
 }
 
 function closeModal(modalType) {
     const modal = document.getElementById(modalType + '-modal');
     if (modal) {
-        modal.style.opacity = '0';
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }, 300);
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 

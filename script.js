@@ -758,7 +758,9 @@ function downloadResource(resourceType) {
         'tax-guide': 'Dental Practice Tax Planning Guide 2024',
         'cash-flow': 'Cash Flow Calculator Template',
         'kpi-checklist': 'Financial KPIs Checklist',
-        'compliance': 'Compliance Checklist'
+        'compliance': 'Compliance Checklist',
+        'valuation-guide': 'Practice Valuation Guide',
+        'expense-kit': 'Expense Optimization Kit'
     };
     
     const resourceName = resourceNames[resourceType] || 'Resource';

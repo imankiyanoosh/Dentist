@@ -103,6 +103,22 @@ const nextBtn = document.getElementById('next-btn');
 document.addEventListener('DOMContentLoaded', function() {
     totalQuestionsSpan.textContent = quizData.length;
     
+    // Header scroll effects
+    const header = document.getElementById('header');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+    
     // Add scroll animations
     const observerOptions = {
         threshold: 0.1,
@@ -127,7 +143,23 @@ document.addEventListener('DOMContentLoaded', function() {
     if (consultationForm) {
         consultationForm.addEventListener('submit', handleFormSubmit);
     }
+    
+    // Mobile menu click handlers
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMobileMenu();
+        });
+    });
 });
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobile-nav');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    
+    mobileNav.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+}
 
 // Start Quiz
 function startQuiz() {

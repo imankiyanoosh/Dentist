@@ -10,63 +10,117 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
             <div class="logo">
                 <h1>CA Dental Medical CPA</h1>
                 <span class="tagline">Specialized Tax & Accounting for Healthcare</span>
             </div>
-            <div class="trust-indicators">
-                <span class="rating">★★★★★ 5.0 (107 reviews)</span>
-                <span class="clients">350+ Happy Doctors</span>
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#resources" class="nav-link">Resources</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <button class="cta-button primary header-cta-btn" onclick="startQuiz()">
+                    Free Practice Assessment
+                </button>
             </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="mobile-nav-menu">
+                <li><a href="#services" class="mobile-nav-link">Services</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#resources" class="mobile-nav-link">Resources</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <button class="cta-button primary mobile-cta" onclick="startQuiz()">
+                Free Practice Assessment
+            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h2 class="hero-title">Discover Hidden Tax Savings in Your Dental Practice</h2>
-                    <p class="hero-subtitle">Take our FREE 2-minute Financial Health Assessment and get a personalized report showing exactly how much you could save on taxes this year.</p>
+                    <h2 class="hero-title">Stop Losing $50K+ Annually to Dental Tax Mistakes</h2>
+                    <p class="hero-subtitle">The only CPA firm built exclusively for dentists. Get your FREE practice analysis and discover hidden tax strategies that could save you thousands this year.</p>
                     
-                    <div class="benefits-grid">
-                        <div class="benefit">
-                            <span class="benefit-icon">💰</span>
-                            <span>Average $15K+ tax savings</span>
+                    <div class="value-points">
+                        <div class="value-point">
+                            <div class="value-icon">🦷</div>
+                            <span>Dental-Specific Tax Strategies</span>
                         </div>
-                        <div class="benefit">
-                            <span class="benefit-icon">⏱️</span>
-                            <span>2-minute assessment</span>
+                        <div class="value-point">
+                            <div class="value-icon">💰</div>
+                            <span>Average 30% Tax Savings</span>
                         </div>
-                        <div class="benefit">
-                            <span class="benefit-icon">📊</span>
-                            <span>Personalized report</span>
+                        <div class="value-point">
+                            <div class="value-icon">📊</div>
+                            <span>Practice Growth Optimization</span>
                         </div>
                     </div>
 
-                    <button class="cta-button primary" onclick="startQuiz()">
-                        Start Free Assessment
-                        <span class="arrow">→</span>
-                    </button>
+                    <div class="hero-cta-buttons">
+                        <button class="cta-button primary large" onclick="startQuiz()">
+                            Get My Free Dental CPA Analysis
+                            <span class="arrow">→</span>
+                        </button>
+                        <button class="cta-button secondary" onclick="showContactForm()">
+                            📞 Schedule 15-Min Call
+                        </button>
+                    </div>
 
-                    <p class="guarantee">✓ No credit card required • ✓ Instant results • ✓ 100% confidential</p>
+                    <div class="trust-indicators-hero">
+                        <span class="trust-item">✓ Trusted by 200+ Dental Practices</span>
+                        <span class="trust-item">✓ CPA + Dental Industry Certified</span>
+                        <span class="trust-item">✓ Average Client Saves $47K Annually</span>
+                    </div>
                 </div>
                 
                 <div class="hero-visual">
-                    <div class="calculator-preview">
-                        <div class="calc-header">Dental Practice Financial Health</div>
-                        <div class="calc-body">
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 60%"></div>
+                    <div class="floating-cards">
+                        <div class="preview-card card-1">
+                            <div class="card-header">Tax Savings Calculator</div>
+                            <div class="card-content">
+                                <div class="savings-amount">$47,250</div>
+                                <div class="savings-label">Potential Annual Savings</div>
                             </div>
-                            <p>Question 3 of 5</p>
-                            <div class="sample-question">What's your practice's annual revenue?</div>
+                        </div>
+                        <div class="preview-card card-2">
+                            <div class="card-header">Practice Analysis</div>
+                            <div class="card-content">
+                                <div class="progress-ring">
+                                    <div class="progress-value">85%</div>
+                                </div>
+                                <div class="analysis-label">Financial Health Score</div>
+                            </div>
+                        </div>
+                        <div class="preview-card card-3">
+                            <div class="card-header">Growth Forecast</div>
+                            <div class="card-content">
+                                <div class="growth-chart">📈</div>
+                                <div class="growth-label">Revenue Optimization</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">↓</div>
+            <span>Scroll to explore</span>
         </div>
     </section>
 

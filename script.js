@@ -442,12 +442,97 @@ function handleFormSubmit(e) {
 
 // Smooth scrolling for anchor links
 document.addEventListener('click', function(e) {
-    if (e.target.matches('a[href^="#"]')) {
+    if (e.target.matches('a[href^="#"]') && e.target.getAttribute('href') !== '#') {
         e.preventDefault();
         const target = document.querySelector(e.target.getAttribute('href'));
         if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
         }
+    }
+});
+
+// Modal Functions
+function openModal(modalType) {
+    const modal = document.getElementById(modalType + '-modal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(modalType) {
+    const modal = document.getElementById(modalType + '-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal when clicking outside of it
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+});
+
+// Resource Download Function
+function downloadResource(resourceType) {
+    // Show alert for demo purposes - in real implementation, this would trigger actual downloads
+    const resourceNames = {
+        'tax-guide': 'Dental Practice Tax Planning Guide 2024',
+        'cash-flow': 'Cash Flow Calculator Template',
+        'kpi-checklist': 'Financial KPIs Checklist',
+        'compliance': 'Compliance Checklist'
+    };
+    
+    const resourceName = resourceNames[resourceType] || 'Resource';
+    alert(`Thank you for your interest! The "${resourceName}" download would begin here. In a live implementation, this would provide the actual file download.`);
+    
+    // Track the download request (you could integrate with analytics here)
+    console.log(`Resource download requested: ${resourceType}`);
+}
+
+// Quick Contact Form Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const quickContactForm = document.querySelector('.quick-contact-form');
+    if (quickContactForm) {
+        quickContactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const inputs = e.target.querySelectorAll('input, textarea');
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Thank you for your message! We will get back to you within 24 hours.');
+                
+                // Reset form
+                inputs.forEach(input => input.value = '');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
     }
 });
 

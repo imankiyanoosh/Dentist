@@ -429,27 +429,106 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="modern-footer" data-theme="dark">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <h4>CA Dental Medical CPA</h4>
-                    <p>4695 MacArthur Ct 11th floor<br>Newport Beach, CA 92660</p>
-                    <p>Phone: (800) 277-1020<br>Email: Info@pkcpass.com</p>
+            <!-- Theme Toggle -->
+            <div class="theme-toggle-container">
+                <label class="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" onchange="toggleTheme()">
+                    <span class="theme-slider">
+                        <span class="theme-icon sun">☀️</span>
+                        <span class="theme-icon moon">🌙</span>
+                    </span>
+                </label>
+                <span class="theme-label">Dark Mode</span>
+            </div>
+
+            <div class="footer-main">
+                <div class="footer-section footer-brand">
+                    <h2 class="footer-title">CA Dental Medical CPA</h2>
+                    <p class="footer-description">
+                        Specialized Tax & Accounting Excellence for Healthcare Professionals. 
+                        Join our newsletter for exclusive updates and offers.
+                    </p>
+                    
+                    <!-- Newsletter Signup -->
+                    <form class="newsletter-form">
+                        <div class="newsletter-input-container">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-submit">
+                                <span class="newsletter-icon">📧</span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Social Links -->
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <span class="social-icon">📘</span>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <span class="social-icon">💼</span>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <span class="social-icon">🐦</span>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <span class="social-icon">📸</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-trust">
-                    <div class="trust-badges">
-                        <span class="badge">🔒 Secure & Confidential</span>
-                        <span class="badge">✓ CPA Certified</span>
-                        <span class="badge">⭐ 5.0 Rating</span>
+
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Tax Planning</a></li>
+                        <li><a href="#services">Practice Accounting</a></li>
+                        <li><a href="#services">Financial Consulting</a></li>
+                        <li><a href="#services">Compliance Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#resources">Tax Guide</a></li>
+                        <li><a href="#resources">Cash Flow Tools</a></li>
+                        <li><a href="#resources">KPI Checklist</a></li>
+                        <li><a href="#resources">Compliance Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>4695 MacArthur Ct 11th floor<br>Newport Beach, CA 92660</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>(800) 277-1020</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <span>Info@pkcpass.com</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2024 CA Dental Medical CPA. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
-                    <a href="#" onclick="openModal('terms')">Terms & Conditions</a>
+                <div class="footer-bottom-content">
+                    <p class="copyright">&copy; 2024 CA Dental Medical CPA. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
+                        <a href="#" onclick="openModal('terms')">Terms & Conditions</a>
+                    </div>
+                </div>
+                <div class="trust-indicators">
+                    <span class="trust-badge">🔒 Secure & Confidential</span>
+                    <span class="trust-badge">✓ CPA Certified</span>
+                    <span class="trust-badge">⭐ 5.0 Rating</span>
                 </div>
             </div>
         </div>

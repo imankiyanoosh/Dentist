@@ -1,4 +1,3 @@
-
 // Quiz Data - Psychological Lead Conversion System
 const quizData = [
     {
@@ -112,29 +111,29 @@ const nextBtn = document.getElementById('next-btn');
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     totalQuestionsSpan.textContent = quizData.length;
-    
+
     // Header scroll effects
     const header = document.getElementById('header');
     let lastScrollY = window.scrollY;
-    
+
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
-        
+
         if (currentScrollY > 100) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-        
+
         lastScrollY = currentScrollY;
     });
-    
+
     // Add scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -142,18 +141,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-    
+
     // Observe sections for animations
     document.querySelectorAll('section').forEach(section => {
         observer.observe(section);
     });
-    
+
     // Handle form submission
     const consultationForm = document.getElementById('consultation-form');
     if (consultationForm) {
         consultationForm.addEventListener('submit', handleFormSubmit);
     }
-    
+
     // Mobile menu click handlers
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
         link.addEventListener('click', () => {
@@ -166,23 +165,63 @@ document.addEventListener('DOMContentLoaded', function() {
 function toggleMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
     const menuToggle = document.querySelector('.mobile-menu-toggle');
-    
+
     mobileNav.classList.toggle('active');
     menuToggle.classList.toggle('active');
 }
+
+// Theme toggle functionality
+function toggleTheme() {
+    const footer = document.querySelector('.modern-footer');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeLabel = document.querySelector('.theme-label');
+
+    if (themeToggle.checked) {
+        footer.setAttribute('data-theme', 'light');
+        themeLabel.textContent = 'Light Mode';
+        document.documentElement.style.setProperty('--bg-light', '#ffffff');
+        document.documentElement.style.setProperty('--bg-white', '#f8fafc');
+        document.documentElement.style.setProperty('--text-dark', '#1f2937');
+    } else {
+        footer.setAttribute('data-theme', 'dark');
+        themeLabel.textContent = 'Dark Mode';
+        document.documentElement.style.setProperty('--bg-light', '#f8fafc');
+        document.documentElement.style.setProperty('--bg-white', '#ffffff');
+        document.documentElement.style.setProperty('--text-dark', '#1f2937');
+    }
+
+    // Save theme preference
+    localStorage.setItem('theme', themeToggle.checked ? 'light' : 'dark');
+}
+
+// Load saved theme
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const themeToggle = document.getElementById('theme-toggle');
+
+    if (savedTheme === 'light') {
+        themeToggle.checked = true;
+        toggleTheme();
+    }
+}
+
+// Initialize theme on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadTheme();
+});
 
 // Start Quiz
 function startQuiz() {
     quizStarted = true;
     currentQuestionIndex = 0;
     quizAnswers = {};
-    
+
     // Show quiz section
     quizSection.style.display = 'block';
-    
+
     // Scroll to quiz section
     quizSection.scrollIntoView({ behavior: 'smooth' });
-    
+
     // Show first question
     setTimeout(() => {
         displayQuestion();
@@ -192,24 +231,24 @@ function startQuiz() {
 // Display Current Question
 function displayQuestion() {
     const question = quizData[currentQuestionIndex];
-    
+
     // Update progress with animation
     const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
     progressBar.style.width = `${progress}%`;
     currentQuestionSpan.textContent = currentQuestionIndex + 1;
-    
+
     // Add pulse animation to progress bar
     progressBar.style.animation = 'progressPulse 0.5s ease-out';
     setTimeout(() => {
         progressBar.style.animation = '';
     }, 500);
-    
+
     // Dynamic question text based on previous answers
     let dynamicQuestion = question.question;
     if (question.dynamic) {
         dynamicQuestion = getDynamicQuestionText(question, currentQuestionIndex);
     }
-    
+
     // Create question HTML with enhanced styling
     let questionHTML = `
         <div class="question fade-in">
@@ -219,12 +258,12 @@ function displayQuestion() {
             </div>
             <div class="question-options">
     `;
-    
+
     question.options.forEach((option, index) => {
         const isSelected = quizAnswers[question.id] === option.value;
         const priorityClass = option.priority ? `priority-${option.priority}` : '';
         const delay = index * 0.1;
-        
+
         questionHTML += `
             <div class="option ${isSelected ? 'selected' : ''} ${priorityClass}" 
                  onclick="selectOption(${question.id}, '${option.value.replace(/'/g, "\\'")}', this)"
@@ -241,21 +280,21 @@ function displayQuestion() {
             </div>
         `;
     });
-    
+
     questionHTML += `
             </div>
         </div>
     `;
-    
+
     // Fade out old content, then fade in new content
     quizBody.style.opacity = '0';
     quizBody.style.transform = 'translateY(20px)';
-    
+
     setTimeout(() => {
         quizBody.innerHTML = questionHTML;
         quizBody.style.opacity = '1';
         quizBody.style.transform = 'translateY(0)';
-        
+
         // Trigger option animations
         const options = quizBody.querySelectorAll('.option');
         options.forEach((option, index) => {
@@ -264,11 +303,11 @@ function displayQuestion() {
             }, index * 100);
         });
     }, 300);
-    
+
     // Update navigation buttons
     prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-flex' : 'none';
     nextBtn.textContent = currentQuestionIndex === quizData.length - 1 ? 'Get My Results 🎯' : 'Next Question →';
-    
+
     // Update next button state
     updateNextButton();
 }
@@ -278,7 +317,7 @@ function getDynamicQuestionText(question, questionIndex) {
     const practiceType = quizAnswers[1];
     const revenue = quizAnswers[2];
     const structure = quizAnswers[3];
-    
+
     switch(questionIndex) {
         case 1: // Revenue question
             switch(practiceType) {
@@ -311,26 +350,26 @@ function selectOption(questionId, value, element) {
         opt.classList.remove('selected');
         opt.classList.remove('option-selected-animate');
     });
-    
+
     // Add selected class to clicked option with animation
     element.classList.add('selected');
     element.classList.add('option-selected-animate');
-    
+
     // Add ripple effect
     createRippleEffect(element);
-    
+
     // Update radio button
     const radioButton = element.querySelector('input[type="radio"]');
     if (radioButton) {
         radioButton.checked = true;
     }
-    
+
     // Store answer
     quizAnswers[questionId] = value;
-    
+
     // Update next button with animation
     updateNextButton();
-    
+
     // Add selection feedback
     const selectedIcon = element.querySelector('.option-icon');
     if (selectedIcon) {
@@ -339,7 +378,7 @@ function selectOption(questionId, value, element) {
             selectedIcon.style.animation = '';
         }, 600);
     }
-    
+
     // Auto-advance after selection with improved timing
     setTimeout(() => {
         if (currentQuestionIndex < quizData.length - 1) {
@@ -352,16 +391,16 @@ function selectOption(questionId, value, element) {
 function createRippleEffect(element) {
     const ripple = document.createElement('div');
     ripple.className = 'ripple-effect';
-    
+
     const rect = element.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
-    
+
     ripple.style.width = ripple.style.height = size + 'px';
     ripple.style.left = (rect.width / 2 - size / 2) + 'px';
     ripple.style.top = (rect.height / 2 - size / 2) + 'px';
-    
+
     element.appendChild(ripple);
-    
+
     setTimeout(() => {
         if (ripple.parentNode) {
             ripple.parentNode.removeChild(ripple);
@@ -373,7 +412,7 @@ function createRippleEffect(element) {
 function updateNextButton() {
     const currentQuestion = quizData[currentQuestionIndex];
     const hasAnswer = quizAnswers[currentQuestion.id];
-    
+
     nextBtn.disabled = !hasAnswer;
     nextBtn.style.opacity = hasAnswer ? '1' : '0.5';
 }
@@ -389,12 +428,12 @@ function previousQuestion() {
 // Next Question
 function nextQuestion() {
     const currentQuestion = quizData[currentQuestionIndex];
-    
+
     if (!quizAnswers[currentQuestion.id]) {
         alert('Please select an answer before continuing.');
         return;
     }
-    
+
     if (currentQuestionIndex < quizData.length - 1) {
         currentQuestionIndex++;
         displayQuestion();
@@ -408,14 +447,14 @@ function nextQuestion() {
 function showResults() {
     // Hide quiz section
     quizSection.style.display = 'none';
-    
+
     // Generate personalized results
     const results = generateResults();
-    
+
     // Display results
     const resultsContent = document.getElementById('results-content');
     resultsContent.innerHTML = results;
-    
+
     // Show results section
     resultsSection.style.display = 'block';
     resultsSection.scrollIntoView({ behavior: 'smooth' });
@@ -430,27 +469,27 @@ function generateResults() {
     const currentAdvisor = quizAnswers[5];
     const goals = quizAnswers[6];
     const urgency = quizAnswers[7];
-    
+
     let potentialSavings = 5000;
     let assessmentScore = 60;
     let recommendations = [];
     let urgencyLevel = 'medium';
-    
+
     // Calculate potential savings based on revenue and structure inefficiency
     const revenueMultiplier = getRevenueMultiplier(revenue);
     const structureMultiplier = getStructureInefficiencyMultiplier(structure, revenue);
-    
+
     potentialSavings = Math.round(revenueMultiplier * structureMultiplier);
-    
+
     // Calculate assessment score
     assessmentScore = calculateAssessmentScore();
-    
+
     // Determine urgency level
     urgencyLevel = determineUrgencyLevel();
-    
+
     // Generate personalized recommendations
     recommendations = generatePersonalizedRecommendations();
-    
+
     let resultsHTML = `
         <div class="results-header-enhanced">
             <div class="assessment-score-container">
@@ -463,7 +502,7 @@ function generateResults() {
                 </div>
             </div>
         </div>
-        
+
         <div class="savings-highlight ${urgencyLevel}">
             <div class="savings-icon">💰</div>
             <div class="savings-content">
@@ -473,7 +512,7 @@ function generateResults() {
             </div>
         </div>
     `;
-    
+
     recommendations.forEach((rec, index) => {
         resultsHTML += `
             <div class="result-item enhanced" style="animation-delay: ${index * 0.2}s">
@@ -487,7 +526,7 @@ function generateResults() {
             </div>
         `;
     });
-    
+
     return resultsHTML;
 }
 
@@ -506,7 +545,7 @@ function getRevenueMultiplier(revenue) {
 // Calculate structure inefficiency multiplier
 function getStructureInefficiencyMultiplier(structure, revenue) {
     const highRevenue = revenue && (revenue.includes('2.5m') || revenue.includes('5m'));
-    
+
     switch(structure) {
         case 'sole-prop':
             return highRevenue ? 1.8 : 1.4; // Very inefficient for high revenue
@@ -528,27 +567,27 @@ function getStructureInefficiencyMultiplier(structure, revenue) {
 // Calculate overall assessment score
 function calculateAssessmentScore() {
     let score = 50; // Base score
-    
+
     // Structure efficiency
     const structure = quizAnswers[3];
     if (structure === 's-corp') score += 20;
     else if (structure === 'c-corp' || structure === 'partnership') score += 10;
     else if (structure === 'not-sure') score -= 20;
     else score -= 10;
-    
+
     // Current advisor quality
     const advisor = quizAnswers[5];
     if (advisor === 'dental-cpa') score += 25;
     else if (advisor === 'general-cpa') score += 10;
     else if (advisor === 'no-help') score -= 30;
     else score -= 15;
-    
+
     // Financial management
     const challenge = quizAnswers[4];
     if (challenge === 'paying-too-much') score -= 15;
     if (challenge === 'no-clarity') score -= 20;
     if (challenge === 'compliance-concerns') score -= 10;
-    
+
     return Math.max(10, Math.min(100, score));
 }
 
@@ -557,7 +596,7 @@ function determineUrgencyLevel() {
     const urgency = quizAnswers[7];
     const structure = quizAnswers[3];
     const revenue = quizAnswers[2];
-    
+
     if (urgency === 'immediately') return 'urgent';
     if ((structure === 'sole-prop' || structure === 'not-sure') && 
         (revenue && (revenue.includes('2.5m') || revenue.includes('5m')))) return 'urgent';
@@ -573,7 +612,7 @@ function generatePersonalizedRecommendations() {
     const advisor = quizAnswers[5];
     const challenge = quizAnswers[4];
     const goals = quizAnswers[6];
-    
+
     // Structure optimization
     if (structure === 'sole-prop' || structure === 'single-llc') {
         recommendations.push({
@@ -585,7 +624,7 @@ function generatePersonalizedRecommendations() {
             savings: 15000
         });
     }
-    
+
     // Tax planning
     if (challenge === 'paying-too-much') {
         recommendations.push({
@@ -597,7 +636,7 @@ function generatePersonalizedRecommendations() {
             savings: 25000
         });
     }
-    
+
     // Professional guidance
     if (advisor === 'no-help' || advisor === 'diy-software') {
         recommendations.push({
@@ -608,7 +647,7 @@ function generatePersonalizedRecommendations() {
             timeframe: 'Immediate'
         });
     }
-    
+
     // Growth planning
     if (goals === 'scale-multiple' || goals === 'maximize-income') {
         recommendations.push({
@@ -619,7 +658,7 @@ function generatePersonalizedRecommendations() {
             timeframe: '60 days'
         });
     }
-    
+
     // Retirement planning
     if (goals === 'early-retirement' || goals === 'family-legacy') {
         recommendations.push({
@@ -630,7 +669,7 @@ function generatePersonalizedRecommendations() {
             timeframe: '90 days'
         });
     }
-    
+
     return recommendations.slice(0, 4); // Limit to top 4 recommendations
 }
 
@@ -668,35 +707,35 @@ function showContactForm() {
 // Handle Form Submit
 function handleFormSubmit(e) {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
     const data = {};
-    
+
     formData.forEach((value, key) => {
         data[key] = value;
     });
-    
+
     // Add quiz answers to submission
     data.quizAnswers = quizAnswers;
-    
+
     // Show loading state
     const submitBtn = e.target.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span class="loading"></span> Scheduling...';
     submitBtn.disabled = true;
-    
+
     // Simulate form submission (replace with actual API call)
     setTimeout(() => {
         alert('Thank you! We\'ll contact you within 24 hours to schedule your free consultation.');
-        
+
         // Reset form
         e.target.reset();
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-        
+
         // Hide contact form
         contactFormSection.style.display = 'none';
-        
+
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 2000);
@@ -762,10 +801,10 @@ function downloadResource(resourceType) {
         'valuation-guide': 'Practice Valuation Guide',
         'expense-kit': 'Expense Optimization Kit'
     };
-    
+
     const resourceName = resourceNames[resourceType] || 'Resource';
     alert(`Thank you for your interest! The "${resourceName}" download would begin here. In a live implementation, this would provide the actual file download.`);
-    
+
     // Track the download request (you could integrate with analytics here)
     console.log(`Resource download requested: ${resourceType}`);
 }
@@ -776,21 +815,21 @@ document.addEventListener('DOMContentLoaded', function() {
     if (quickContactForm) {
         quickContactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(e.target);
             const inputs = e.target.querySelectorAll('input, textarea');
-            
+
             // Show loading state
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="loading"></span> Sending...';
             submitBtn.disabled = true;
-            
+
             // Simulate form submission
             setTimeout(() => {
                 alert('Thank you for your message! We will get back to you within 24 hours.');
-                
+
                 // Reset form
                 inputs.forEach(input => input.value = '');
                 submitBtn.innerHTML = originalText;
@@ -815,7 +854,7 @@ function validatePhone(phone) {
 document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
-    
+
     if (emailInput) {
         emailInput.addEventListener('blur', function() {
             if (this.value && !validateEmail(this.value)) {
@@ -825,7 +864,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     if (phoneInput) {
         phoneInput.addEventListener('blur', function() {
             if (this.value && !validatePhone(this.value)) {

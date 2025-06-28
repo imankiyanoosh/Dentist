@@ -1563,6 +1563,26 @@ h4 { font-size: 1.25rem; }
     opacity: 0.7;
 }
 
+/* Resources Section */
+.resources {
+    padding: 4rem 0;
+    background: var(--theme-bg-primary);
+    text-align: center;
+}
+
+.resources h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--theme-text-primary);
+}
+
+.resources-intro {
+    text-align: center;
+    color: var(--theme-text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
 /* Add JavaScript to toggle themes */
 /* Add this script inside the <head> or before the closing </body> tag */
 /* Or in a separate .js file */
